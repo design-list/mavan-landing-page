@@ -20,6 +20,11 @@ const treatmentData = {
         { image: "/img/skincare3.png", title: "Hair Fall Therapy" },
         { image: "/img/skincare4.png", title: "Scar Reduction" },
         { image: "/img/skincare5.png", title: "Psoriasis Care" },
+        { image: "/img/skincare1.png", title: "Acne Treatment" },
+        { image: "/img/skincare2.png", title: "Pigmentation Control" },
+        { image: "/img/skincare3.png", title: "Hair Fall Therapy" },
+        { image: "/img/skincare4.png", title: "Scar Reduction" },
+        { image: "/img/skincare5.png", title: "Psoriasis Care" },
     ],
 };
 
@@ -27,9 +32,9 @@ function PrevArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="absolute left-[calc(50%-60px)] -bottom-16 md:-bottom-20 z-30 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+            className="absolute left-[calc(50%-56px)] -bottom-14 md:-bottom-24 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
         >
-            <ChevronLeft size={24} className="text-purple" />
+            <ChevronLeft size={20} className="text-purple" />
         </button>
     );
 }
@@ -38,9 +43,9 @@ function NextArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="absolute left-[calc(50%+10px)] -bottom-16 md:-bottom-20 z-30 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+            className="absolute left-[calc(50%+8px)] -bottom-14 md:-bottom-24 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
         >
-            <ChevronRight size={24} className="text-purple" />
+            <ChevronRight size={20} className="text-purple" />
         </button>
     );
 }
@@ -56,9 +61,8 @@ export default function SkinSolution() {
         slidesToScroll: 1,
         centerPadding: "0px",
         speed: 600,
-        cssEase: "cubic-bezier(0.25, 1, 0.5, 1)", // Custom smooth easing
-        autoplay: true,
-        autoplaySpeed: 3000,
+        cssEase: "cubic-bezier(0.25, 1, 0.5, 1)",
+        autoplay: false,
         arrows: true,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
@@ -66,25 +70,42 @@ export default function SkinSolution() {
         responsive: [
             {
                 breakpoint: 1280,
-                settings: { slidesToShow: 3 },
+                settings: {
+                    slidesToShow: 3,
+                    centerPadding: "0px",
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                    centerPadding: "50px"
+                    centerMode: true,
+                    centerPadding: "60px", // peek neighboring slides
+                    arrows: true,
+                    focusOnSelect: true,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                    centerPadding: "40px",
+                    arrows: true,
+                    focusOnSelect: true,
                 },
             },
         ],
     };
 
     return (
-        <section className="relative py-20 md:py-32 overflow-hidden">
+        <section className="skinsolution relative py-20 md:py-32">
             {/* Background Section */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
                     src="/img/skin-care-bg.png"
-                    alt="Background" fill
+                    alt="Background"
+                    fill
                     className="object-fill hidden md:block"
                     priority
                 />
@@ -97,22 +118,27 @@ export default function SkinSolution() {
                 />
             </div>
 
-            <div className="container relative z-10 text-center">
-                <h2 className="font-gideon text-3xl md:text-6xl text-white leading-tight">
-                    Our signature <span className="font-bold bg-text-gradient bg-clip-text text-transparent">Skin</span> Solutions
+            <div className="container relative z-10 text-center pt-14 pb-24 md:pb-20">
+                <h2 className="font-garamond text-3xl md:text-6xl text-white leading-tight">
+                    Our signature{" "}
+                    <span className="font-bold bg-text-gradient bg-clip-text text-transparent">
+                        Skin
+                    </span>{" "}
+                    Solutions
                 </h2>
 
                 <p className="font-raleway text-white/80 mt-4 max-w-2xl mx-auto text-sm md:text-lg">
-                    Thoughtfully designed dermatology treatments for both clinical skin concerns and refined results.
+                    Thoughtfully designed dermatology treatments for both clinical skin
+                    concerns and refined results.
                 </p>
 
-                {/* Functional Tabs */}
-                <div className="flex justify-center gap-3 mt-10 mb-8 md:mb-24">
+                {/* Tabs */}
+                <div className="flex justify-center gap-3 mt-10 mb-10">
                     {Object.keys(treatmentData).map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`text-sm md:text-base px-4 md:px-8 py-2 md:py-2.5 rounded-full font-medium transition-all duration-500 cursor-pointer border ${activeTab === tab
+                            className={`text-sm md:text-base px-5 md:px-8 py-2 md:py-2.5 rounded-full font-medium transition-all duration-500 cursor-pointer border ${activeTab === tab
                                 ? "bg-button-gradient text-purple border-transparent shadow-lg scale-105"
                                 : "bg-transparent text-white border-white/30 hover:border-white"
                                 }`}
@@ -122,22 +148,23 @@ export default function SkinSolution() {
                     ))}
                 </div>
 
-                {/* Slider */}
-                <div className="skin-slider-container">
+                {/* Slider — overflow-x hidden here, NOT on section */}
+                <div className="skin-slider-container overflow-x-hidden">
                     <Slider {...settings} key={activeTab} className="skin-slider">
                         {treatmentData[activeTab].map((item, index) => (
-                            <div key={index} className="px-3 outline-none">
+                            <div key={index} className="px-2 md:px-3 outline-none">
                                 <div className="slide-card group cursor-pointer">
                                     <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.5] overflow-hidden rounded-2xl">
                                         <Image
                                             src={item.image}
                                             alt={item.title}
-                                            fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                            sizes="(max-width: 768px) 100vw, 20vw"
+                                            className="object-fill transition-transform duration-700 w-full h-full"
+                                            sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
+                                            height={100}
+                                            width={100}
                                         />
                                     </div>
-                                    <p className="title text-white mt-6 text-lg md:text-2xl font-raleway transition-all duration-500 opacity-40">
+                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-2xl font-raleway transition-all duration-500">
                                         {item.title}
                                     </p>
                                 </div>

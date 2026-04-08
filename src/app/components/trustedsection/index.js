@@ -1,91 +1,113 @@
-"use client"; // Required for Slick Slider in Next.js App Router
+"use client";
 
 import Image from 'next/image';
-import Slider from "react-slick";
-
-// Import slick styles (can also be done in layout.tsx or globals.css)
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const personalityImages = [
     { id: 1, src: '/img/personality1.png', alt: 'Client 1' },
     { id: 2, src: '/img/personality2.png', alt: 'Client 2' },
     { id: 3, src: '/img/personality3.png', alt: 'Client 3' },
     { id: 4, src: '/img/personality4.png', alt: 'Client 4' },
+    { id: 5, src: '/img/personality5.png', alt: 'Client 5' },
+    { id: 6, src: '/img/personality6.png', alt: 'Client 6' },
+    { id: 7, src: '/img/personality7.png', alt: 'Client 7' },
+    { id: 8, src: '/img/personality8.png', alt: 'Client 8' },
 ];
 
-export default function TrustedSection() {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        centerMode: true,
-        centerPadding: "0px",
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1,
-                    centerPadding: "40px", // Shows a peek of the next slide on mobile
-                }
-            }
-        ]
-    };
+// Duplicate enough times to fill wide screens without gaps
+const track = [...personalityImages, ...personalityImages, ...personalityImages];
 
+export default function TrustedSection() {
     return (
-        <section className="bg-white px-4 overflow-hidden">
-            <div className="container mx-auto">
-                {/* Header Content */}
+        <section className="bg-white py-10 md:py-20 overflow-hidden">
+            <div className="container mx-auto px-4">
+                {/* Header */}
                 <div className="text-center mb-8 md:mb-16">
-                    <h2 className="font-gideon text-2xl md:text-5xl text-black mb-4 font-bold">
-                        Trusted by those who expect the <span className="inline-block bg-text-gradient bg-clip-text text-transparent font-black">Best.</span>
+                    <h2 className="font-garamond text-2xl md:text-5xl text-black mb-4 font-bold">
+                        Trusted by those who expect the{' '}
+                        <span className="inline-block bg-text-gradient bg-clip-text text-transparent font-black">
+                            Best.
+                        </span>
                     </h2>
                     <p className="font-raleway text-black text-sm md:text-lg max-w-3xl mx-auto">
                         Leading personalities choose Maven Esthetics for doctor-led skin and hair treatments.
                     </p>
                 </div>
+            </div>
 
-                {/* Slick Slider */}
-                <div className="trusted-slider-container">
-                    <Slider {...settings}>
-                        {personalityImages.map((img) => (
-                            <div key={img.id} className="px-3"> {/* Added padding for gap between slides */}
-                                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-[60px] md:rounded-[80px] shadow-sm">
-                                    <Image
-                                        src={img.src}
-                                        alt={img.alt}
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-                                </div>
+            {/* Full-bleed marquee — outside container so it spans edge to edge */}
+            <div className="marquee-wrapper">
+                <div className="marquee-track">
+                    {track.map((img, i) => (
+                        <div key={i} className="marquee-card">
+                            <div className="relative w-full h-full overflow-hidden rounded-[40px] md:rounded-[60px]">
+                                <Image
+                                    src={img.src}
+                                    alt={img.alt}
+                                    fill
+                                    className="object-cover"
+                                    sizes="280px"
+                                />
                             </div>
-                        ))}
-                    </Slider>
+                        </div>
+                    ))}
                 </div>
             </div>
 
-            {/* Custom CSS for Slick Dots styling */}
             <style jsx global>{`
-                .trusted-slider-container .slick-dots li button:before {
-                    color: #e3b16f;
-                    font-size: 12px;
+                .marquee-wrapper {
+                    width: 100%;
+                    overflow: hidden;
+                    /* Edge fade */
+                    mask-image: linear-gradient(
+                        to right,
+                        transparent 0%,
+                        black 8%,
+                        black 92%,
+                        transparent 100%
+                    );
+                    -webkit-mask-image: linear-gradient(
+                        to right,
+                        transparent 0%,
+                        black 8%,
+                        black 92%,
+                        transparent 100%
+                    );
                 }
-                .trusted-slider-container .slick-dots li.slick-active button:before {
-                    color: #e3b16f;
+
+                .marquee-track {
+                    display: flex;
+                    gap: 20px;
+                    width: max-content;
+
+                    /* GPU-accelerated smooth scroll */
+                    animation: marquee-scroll 30s linear infinite;
+                    will-change: transform;
                 }
-                .trusted-slider-container .slick-list {
-                    overflow: visible; /* Allows rounded corners to not clip weirdly during transition */
+
+                .marquee-track:hover {
+                    animation-play-state: paused;
+                }
+
+                .marquee-card {
+                    flex-shrink: 0;
+                    width: 220px;
+                    height: 275px;
+                }
+
+                @media (min-width: 768px) {
+                    .marquee-card {
+                        width: 280px;
+                        height: 350px;
+                    }
+                    .marquee-track {
+                        gap: 28px;
+                    }
+                }
+
+                @keyframes marquee-scroll {
+                    0%   { transform: translateX(0); }
+                    /* Scroll exactly 1/3 of the track — one full set of images */
+                    100% { transform: translateX(calc(-100% / 3)); }
                 }
             `}</style>
         </section>

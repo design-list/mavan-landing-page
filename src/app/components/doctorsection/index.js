@@ -12,7 +12,7 @@ export default function DoctorSection() {
 
                     {/* Left Content */}
                     <div className="w-full md:w-2/3">
-                        <h2 className="font-gideon text-4xl md:text-5xl leading-tight">
+                        <h2 className="font-garamond text-4xl md:text-5xl leading-tight">
                             Meet Your Doctor -{" "}
                             <span className="font-black inline-block bg-text-gradient bg-clip-text text-transparent ">
                                 Dr. Geoffrey Vaz.

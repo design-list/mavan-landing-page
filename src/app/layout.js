@@ -1,10 +1,6 @@
-import Link from "next/link";
 import "./globals.css";
-import Image from "next/image";
-
-import Phone from '@/icons/phone.svg';
-import WhatsApp from '@/icons/whatsapp.svg';
-import Calendar from '@/icons/calendar.svg';
+import ClientProviders from "./components/clientproviders";
+import FloatingPanel from "./components/floatingpanel";
 
 export const metadata = {
   title: "Maven",
@@ -28,26 +24,10 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="min-h-screen flex flex-col font-raleway">
-        {/* Right Side Floating Panel */}
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-20 bg-darkpurple rounded-tl-2xl rounded-bl-2xl overflow-hidden">
-          <div className="hidden md:flex flex-col gap-4 text-white px-3 py-3">
-            <Link href={'#'} className="border-b border-golden flex flex-col items-center gap-2 ">
-              <Image src={Phone} alt="Phone Icon" className=" w-7 h-7" />
-              <span className="text-xs text-golden pb-3">Call Now</span>
-            </Link>
-
-            <Link href={'#'} className="border-b border-golden flex flex-col items-center gap-2">
-              <Image src={WhatsApp} alt="WhatsApp Icon" className=" w-7 h-7" />
-              <span className="text-xs text-golden pb-3">WhatsApp</span>
-            </Link>
-
-            <Link href={'#'} className="flex flex-col border-golden items-center gap-2">
-              <Image src={Calendar} alt="Calendar Icon" className=" w-7 h-7" />
-              <span className="text-xs text-golden pb-3">Book Now</span>
-            </Link>
-          </div>
-        </div>
-        {children}
+        <ClientProviders>
+          <FloatingPanel />
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

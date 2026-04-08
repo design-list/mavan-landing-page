@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { useConsultation } from "../../context/ConsultationContext";
 
 const faqs = [
     {
@@ -33,6 +34,7 @@ const faqs = [
 
 export default function FAQSection() {
     const [active, setActive] = useState(0);
+    const { open } = useConsultation();
 
     return (
         <section className="py-8">
@@ -41,7 +43,7 @@ export default function FAQSection() {
 
                     {/* Left Content */}
                     <div>
-                        <h2 className="font-gideon text-3xl md:text-5xl leading-tight max-w-xl font-semibold">
+                        <h2 className="font-garamond text-3xl md:text-5xl leading-tight max-w-xl font-semibold">
                             Have Questions Before Your Consultation?
                         </h2>
 
@@ -66,7 +68,7 @@ export default function FAQSection() {
                             </div>
                         </div>
 
-                        <button className="theme-button mt-12 px-8 py-4 flex items-center gap-3">
+                        <button onClick={open} className="theme-button mt-12 px-8 py-4 flex items-center gap-3">
                             Book a consultation
                             <ArrowRight size={20} />
                         </button>

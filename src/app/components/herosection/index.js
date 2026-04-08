@@ -2,13 +2,16 @@
 
 import Image from "next/image";
 import Container from "../container";
-import Link from "next/link";
+
 
 import Logo from '@/icons/logo.svg';
 import Bgbanner from '@/img/hero-banner.png';
 import BgbannerMobile from '@/img/hero-banner-mobile.png';
+import { useConsultation } from "../../context/ConsultationContext";
 
 export default function HeroSection() {
+    const { open } = useConsultation();
+
     return (
         <section className="relative h-screen">
             {/* Background Image */}
@@ -40,9 +43,9 @@ export default function HeroSection() {
                             height={50}
                         />
 
-                        <Link href={'#'} role="button" className="theme-button hidden md:block">
+                        <button onClick={open} className="theme-button hidden md:block">
                             Book a consultation
-                        </Link>
+                        </button>
                     </div>
                 </header>
 
@@ -63,13 +66,12 @@ export default function HeroSection() {
                         From clinical skin concerns to aesthetic refinement.
                     </p>
 
-                    <Link
-                        href="#"
-                        role="button"
-                        className="font-raleway mt-8 bg-linear-bg bg-clip-text text-transparent inline-block text-base md:text-lg font-semibold"
+                    <button
+                        onClick={open}
+                        className="font-raleway mt-8 bg-linear-bg bg-clip-text text-transparent inline-block text-base md:text-lg font-semibold cursor-pointer"
                     >
                         Book a consultation →
-                    </Link>
+                    </button>
 
                     {/* Stats */}
                     <div className="font-raleway flex md:gap-10 mt-28 md:mt-48 text-white flex-wrap justify-center font-light text-lg">

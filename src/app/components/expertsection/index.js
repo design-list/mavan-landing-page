@@ -4,6 +4,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import SkinCareBg from "@/img/skin-care-bg.png";
 import SkinCareBgMob from "@/img/purple-bg-mobile.png";
+import { useConsultation } from "../../context/ConsultationContext";
 
 const galleryImages = [
     { id: 1, src: "/img/expert1.png", alt: "Dr. Geoffrey with client" },
@@ -11,13 +12,19 @@ const galleryImages = [
     { id: 3, src: "/img/expert3.png", alt: "Miss India Runner Up" },
     { id: 4, src: "/img/expert4.png", alt: "Femina Miss India" },
     { id: 5, src: "/img/expert5.png", alt: "Miss India Finalist" },
+    { id: 1, src: "/img/expert1.png", alt: "Dr. Geoffrey with client" },
+    { id: 2, src: "/img/expert2.png", alt: "Mr India World" },
+    { id: 3, src: "/img/expert3.png", alt: "Miss India Runner Up" },
+    { id: 4, src: "/img/expert4.png", alt: "Femina Miss India" },
+    { id: 5, src: "/img/expert5.png", alt: "Miss India Finalist" }
 ];
 
 export default function ExpertSection() {
+    const { open } = useConsultation();
     const settings = {
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 2500,
+        autoplaySpeed: 1000,
         speed: 800,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -69,7 +76,7 @@ export default function ExpertSection() {
             <div className="container mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h2 className="font-gideon text-2xl md:text-5xl text-white mb-4 leading-tight">
+                    <h2 className="font-garamond text-2xl md:text-5xl text-white mb-4 leading-tight">
                         Where beauty meets{" "}
                         <span className="inline-block bg-text-gradient bg-clip-text text-transparent font-black">Expert</span> Dermatology
                     </h2>
@@ -98,11 +105,8 @@ export default function ExpertSection() {
 
                 {/* CTA */}
                 <div className="flex justify-center mt-12">
-                    <button className="theme-button">
-                        Book a consultation{" "}
-                        <span className="transition-transform group-hover:translate-x-1">
-                            →
-                        </span>
+                    <button onClick={open} className="theme-button">
+                        Book a consultation →
                     </button>
                 </div>
             </div>

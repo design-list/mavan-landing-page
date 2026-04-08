@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Hurricane&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
 
 @config "../../tailwind.config.js";
 @import "tailwindcss";
@@ -12,7 +13,8 @@
   /* Fonts */
   --font-raleway: "Raleway", sans-serif;
   --font-hurricane: "Hurricane", cursive;
-  --font-gideon-roman: "Gideon Roman", serif;
+  --font-cormorant-garamond: "Cormorant Garamond", serif;
+  /* --font-garamond-roman: "Gideon Roman", serif; */
 
   /* Colors */
   --color-purple: #5a0060;
@@ -74,25 +76,26 @@
    SLICK SLIDER OVERRIDE
 ======================================== */
 /* 1. Ensure the container doesn't clip the zoomed slide */
-.skin-slider-container {
-  padding: 40px 0;
-  margin: 0 -15px; /* Offset side padding */
+.skinsolution .skin-slider-container {
+  padding-top: 1rem;
+  padding-bottom: 7rem;
+  margin: 0 -15px;
 }
 
-.skin-slider .slick-list {
+.skinsolution .skin-slider .slick-list {
   overflow: visible; /* Crucial for the scaling effect */
 }
 
 /* 2. Base Slide State (Inactive) */
-.skin-slider .slick-slide {
+.skinsolution .skin-slider .slick-slide {
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   transform: scale(0.85);
-  opacity: 0.4;
+  /* opacity: 0.4; */
   filter: grayscale(40%);
 }
 
 /* 3. Center Slide State (Active) */
-.skin-slider .slick-center {
+.skinsolution .skin-slider .slick-center {
   transform: scale(1.1);
   opacity: 1;
   z-index: 20;
@@ -100,19 +103,19 @@
 }
 
 /* 4. Text Transition */
-.skin-slider .slick-slide .title {
+/* .skinsolution .skin-slider .slick-slide .title {
   transform: translateY(10px);
   opacity: 0;
-}
+} */
 
-.skin-slider .slick-center .title {
+.skinsolution .skin-slider .slick-center .title {
   transform: translateY(0);
   opacity: 1;
   font-weight: 500;
 }
 
 /* 5. Track Alignment */
-.skin-slider .slick-track {
+.skinsolution .skin-slider .slick-track {
   display: flex !important;
   align-items: center;
 }
@@ -120,7 +123,9 @@
 /* Responsive Overrides */
 @media (max-width: 768px) {
   .skin-slider .slick-center {
-    transform: scale(1.05); /* Slightly less zoom on mobile to prevent clipping */
+    transform: scale(
+      1.05
+    ); /* Slightly less zoom on mobile to prevent clipping */
   }
 }
 
@@ -148,5 +153,9 @@
   .skin-slider .slick-center .image-wrap {
     width: 190px;
     height: 320px;
+  }
+
+  .skinsolution .skin-slider-container {
+    padding: 10px 0;
   }
 }

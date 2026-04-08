@@ -28,13 +28,14 @@ export default {
             },
 
             animation: {
-                'marquee-vertical': 'marquee-vertical 30s linear infinite',
+                // Increase duration for slower, smoother scroll (was likely 20s–30s before)
+                'marquee-vertical': 'marquee-vertical 60s linear infinite',
             },
 
             keyframes: {
                 'marquee-vertical': {
-                    '0%': { transform: 'translateY(0%)' },
-                    '100%': { transform: 'translateY(-50%)' },
+                    '0%': { transform: 'translateY(0)' },
+                    '100%': { transform: 'translateY(-50%)' }, // -50% because list is 4x duplicated
                 },
             },
 
@@ -43,7 +44,11 @@ export default {
                 mono: ["var(--font-geist-mono)", "monospace"],
                 raleway: ["var(--font-raleway)"],
                 hurricane: ["var(--font-hurricane)"],
-                gideon: ["var(--font-gideon-roman)"],
+                garamond: ["var(--font-cormorant-garamond)"],
+            },
+
+            images: {
+                deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             },
 
             backgroundImage: {

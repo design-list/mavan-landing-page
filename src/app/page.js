@@ -17,6 +17,7 @@ import CurveLine from "@/icons/curve.svg";
 import Expertbg from "@/icons/expert-bg.svg";
 import ExpertbgMobile from "@/img/expert-bg-mobile.png";
 import Dots from "@/icons/2dots.svg";
+import { useConsultation } from "./context/ConsultationContext";
 
 const logos = [
   "/img/brands1.png",
@@ -63,6 +64,8 @@ const settings = {
 };
 
 export default function Home() {
+  const { open } = useConsultation();
+
   return (
     <>
       {/* Hero Section  */}
@@ -77,7 +80,7 @@ export default function Home() {
           </p>
 
           {/* Main Heading */}
-          <h2 className="font-gideon text-2xl md:text-4xl leading-[1.25] max-w-6xl mx-auto">
+          <h2 className="font-garamond text-2xl md:text-4xl leading-[1.25] max-w-6xl mx-auto">
             We are MAVEN ESTHETICS - an MD Dermatologist-led skin & hair clinic,
             thoughtfully designed around{" "}
             <span className="inline-block bg-text-gradient bg-clip-text text-transparent font-semibold">you.</span>
@@ -85,7 +88,7 @@ export default function Home() {
 
           {/* Button */}
           <div className="mt-6 md:mt-12">
-            <button className="theme-button inline-flex items-center gap-2">
+            <button onClick={open} className="theme-button inline-flex items-center gap-2">
               Book a consultation
               <ArrowRight size={18} />
             </button>
@@ -132,10 +135,23 @@ export default function Home() {
       <ResultsSlider />
 
       {/* Section Nine  */}
-      <section className="relative overflow-hidden py-8">
-        <div className="absolute inset-0">
-          <Image src={Expertbg} alt="Background" fill className="object-fill hidden md:block" priority />
-          <Image src={ExpertbgMobile} alt="Background" fill className="object-fill block md:hidden" priority />
+      <section className="relative overflow-hidden py-8 w-full">
+        {/* Background — inset-0 + w-full h-full ensures true edge-to-edge */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={Expertbg}
+            alt="Background"
+            fill
+            className="object-cover hidden md:block"
+            priority
+          />
+          <Image
+            src={ExpertbgMobile}
+            alt="Background"
+            fill
+            className="object-cover block md:hidden"
+            priority
+          />
         </div>
 
         <div className="container relative z-10">
@@ -143,17 +159,16 @@ export default function Home() {
 
             {/* Left Heading */}
             <div>
-              <h2 className="font-gideon text-white text-3xl md:text-5xl leading-tight max-w-2xl">
+              <h2 className="font-garamond text-white text-3xl md:text-5xl leading-tight max-w-2xl">
                 The Foundation Of True Expertise
               </h2>
             </div>
 
             {/* Right Quote */}
             <div className="max-w-3xl">
-              <div className="text-golden text-8xl leading-none font-bold mt-3 md:mb-6">
-                <Image src={Dots} alt="Dots" className=" w-[50px] md:w-[100px]" />
+              <div className="mt-3 md:mb-6">
+                <Image src={Dots} alt="Dots" className="w-[50px] md:w-[100px]" />
               </div>
-
               <p className="text-white text-base md:text-2xl leading-relaxed font-light">
                 We believe the best aesthetic work is invisible - when people
                 notice you, not the treatment.
@@ -162,9 +177,9 @@ export default function Home() {
 
           </div>
         </div>
-      </section >
+      </section>
 
-      {/* Section Ten  */}
+      {/* Section Eleven  */}
       < FAQSection />
 
       {/* Section Eleven  */}
