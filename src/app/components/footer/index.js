@@ -13,6 +13,7 @@ import Github from '@/icons/github.svg';
 import FooterBg from '@/img/footer-bg.png';
 import FooterBgMobile from '@/img/footer-bg-mobile.png';
 import { useConsultation } from "../../context/ConsultationContext";
+import Link from "next/link";
 
 function PolicyModal({ isOpen, onClose, title, children }) {
     if (!isOpen) return null;
@@ -102,13 +103,11 @@ export default function Footer() {
                         </div>
 
                         {/* Social Icons */}
-                        <div className="flex gap-4">
-                            {[Twitter, Instagram, Facebook, Github].map((Icon, index) => (
-                                <div key={index} className="w-8 md:w-11 h-8 md:h-11">
-                                    <Image src={Icon} alt="social icon" width={40} height={40} />
-                                </div>
-                            ))}
-                        </div>
+                        <ul className="flex gap-4">
+                            <li><Link href={'https://www.instagram.com/maven.esthetics/'}><Image src={Instagram} alt="social icon" width={40} height={40} /></Link></li>
+                            <li><Link href={'https://www.facebook.com/mavenestheticsindia/'}><Image src={Facebook} alt="social icon" width={40} height={40} /></Link></li>
+                            <li><Link href={'https://x.com/geoffrey_vaz'}><Image src={Twitter} alt="social icon" width={40} height={40} /></Link></li>
+                        </ul>
                     </div>
                 </div>
             </footer>

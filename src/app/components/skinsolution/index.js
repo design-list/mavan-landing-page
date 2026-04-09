@@ -6,25 +6,29 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const treatmentData = {
-    Esthetic: [
-        { image: "/img/skincare1.png", title: "Wrinkle Reduction" },
-        { image: "/img/skincare2.png", title: "Skin Glow Therapy" },
-        { image: "/img/skincare3.png", title: "Lip Enhancement" },
-        { image: "/img/skincare4.png", title: "Face Sculpting" },
-        { image: "/img/skincare5.png", title: "Under Eye Care" },
-        { image: "/img/skincare1.png", title: "Wrinkle Reduction" },
+    "Dermatology": [
+        { image: "/img/dermatology/dermatology1.png", title: "pigmentary disorder" },
+        { image: "/img/dermatology/dermatology2.png", title: "inflammatory skin disorder" },
+        { image: "/img/dermatology/dermatology3.png", title: "skin infections" },
+        { image: "/img/dermatology/dermatology4.png", title: "Acne and acne scarring" },
+        { image: "/img/dermatology/dermatology5.png", title: "Hair and scalp disorders" },
+        { image: "/img/dermatology/dermatology6.png", title: "infectious dermatology" },
+        { image: "/img/dermatology/dermatology7.png", title: "dermatosurgery" },
+        { image: "/img/dermatology/dermatology8.png", title: "laser dermatology" }
     ],
-    Derma: [
-        { image: "/img/skincare1.png", title: "Acne Treatment" },
-        { image: "/img/skincare2.png", title: "Pigmentation Control" },
-        { image: "/img/skincare3.png", title: "Hair Fall Therapy" },
-        { image: "/img/skincare4.png", title: "Scar Reduction" },
-        { image: "/img/skincare5.png", title: "Psoriasis Care" },
-        { image: "/img/skincare1.png", title: "Acne Treatment" },
-        { image: "/img/skincare2.png", title: "Pigmentation Control" },
-        { image: "/img/skincare3.png", title: "Hair Fall Therapy" },
-        { image: "/img/skincare4.png", title: "Scar Reduction" },
-        { image: "/img/skincare5.png", title: "Psoriasis Care" },
+    "Esthetics": [
+        { image: "/img/esthetics/esthetics1.png", title: "anti inflammatory & barrier repair treatment " },
+        { image: "/img/esthetics/esthetics2.png", title: "Glow and radiance" },
+        { image: "/img/esthetics/esthetics3.png", title: "peels" },
+        { image: "/img/esthetics/esthetics4.png", title: "Laser hair reduction" },
+        { image: "/img/esthetics/esthetics5.png", title: "Sculpting" }
+    ],
+    "Advanced & Regenerative": [
+        { image: "/img/ARE/ARE1.png", title: "Anti inflammatory & barrier repair treatment" },
+        { image: "/img/ARE/ARE2.png", title: "Glow and radiance" },
+        { image: "/img/ARE/ARE3.png", title: "causemetic treatments" },
+        { image: "/img/ARE/ARE4.png", title: "regenerative aesthetics" },
+        { image: "/img/ARE/ARE5.png", title: "botched procedures and corrections" }
     ],
 };
 
@@ -32,7 +36,7 @@ function PrevArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="absolute left-[calc(50%-56px)] -bottom-14 md:-bottom-24 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+            className="absolute left-[calc(50%-56px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
         >
             <ChevronLeft size={20} className="text-purple" />
         </button>
@@ -43,15 +47,22 @@ function NextArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="absolute left-[calc(50%+8px)] -bottom-14 md:-bottom-24 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+            className="absolute left-[calc(50%+8px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
         >
             <ChevronRight size={20} className="text-purple" />
         </button>
     );
 }
 
+// Full label map — button shows short key, full name shown as tooltip/aria
+const TAB_LABELS = {
+    "Dermatology": "Dermatology",
+    "Esthetics": "Esthetics",
+    "Advanced & Regenerative": "Advanced & Regenerative Esthetics",
+};
+
 export default function SkinSolution() {
-    const [activeTab, setActiveTab] = useState("Esthetic");
+    const [activeTab, setActiveTab] = useState("Dermatology");
 
     const settings = {
         dots: false,
@@ -78,9 +89,9 @@ export default function SkinSolution() {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1,
-                    centerMode: true,
-                    centerPadding: "60px", // peek neighboring slides
+                    slidesToShow: 2,
+                    centerMode: false,
+                    centerPadding: "0px",
                     arrows: true,
                     focusOnSelect: true,
                 },
@@ -88,9 +99,9 @@ export default function SkinSolution() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
-                    centerMode: true,
-                    centerPadding: "40px",
+                    slidesToShow: 2.5,
+                    centerMode: false,
+                    centerPadding: "0px",
                     arrows: true,
                     focusOnSelect: true,
                 },
@@ -100,25 +111,25 @@ export default function SkinSolution() {
 
     return (
         <section className="skinsolution relative py-20 md:py-32">
-            {/* Background Section */}
+            {/* Background */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
                     src="/img/skin-care-bg.png"
                     alt="Background"
                     fill
-                    className="object-fill hidden md:block"
+                    className="object-cover hidden md:block"
                     priority
                 />
                 <Image
                     src="/img/purple-bg-mobile.png"
                     alt="Background"
                     fill
-                    className="object-fill block md:hidden"
+                    className="object-cover block md:hidden"
                     priority
                 />
             </div>
 
-            <div className="container relative z-10 text-center pt-14 pb-24 md:pb-20">
+            <div className="container relative z-10 text-center pt-14 pb-8 md:pb-20">
                 <h2 className="font-garamond text-3xl md:text-6xl text-white leading-tight">
                     Our signature{" "}
                     <span className="font-bold bg-text-gradient bg-clip-text text-transparent">
@@ -132,39 +143,43 @@ export default function SkinSolution() {
                     concerns and refined results.
                 </p>
 
-                {/* Tabs */}
-                <div className="flex justify-center gap-3 mt-10 mb-10">
-                    {Object.keys(treatmentData).map((tab) => (
+                {/* 3 Tabs */}
+                <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 mb-10">
+                    {Object.keys(TAB_LABELS).map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`text-sm md:text-base px-5 md:px-8 py-2 md:py-2.5 rounded-full font-medium transition-all duration-500 cursor-pointer border ${activeTab === tab
+                            aria-label={TAB_LABELS[tab]}
+                            className={`text-xs md:text-sm lg:text-base px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium transition-all duration-500 cursor-pointer border whitespace-nowrap ${activeTab === tab
                                 ? "bg-button-gradient text-purple border-transparent shadow-lg scale-105"
                                 : "bg-transparent text-white border-white/30 hover:border-white"
                                 }`}
                         >
-                            {tab}
+                            {/* Show full label on desktop, shortened on mobile for "Advanced" tab */}
+                            <span className="hidden md:inline">{TAB_LABELS[tab]}</span>
+                            <span className="inline md:hidden">
+                                {tab === "Advanced & Regenerative" ? "Advanced" : TAB_LABELS[tab]}
+                            </span>
                         </button>
                     ))}
                 </div>
 
-                {/* Slider — overflow-x hidden here, NOT on section */}
+                {/* Slider */}
                 <div className="skin-slider-container overflow-x-hidden">
                     <Slider {...settings} key={activeTab} className="skin-slider">
                         {treatmentData[activeTab].map((item, index) => (
                             <div key={index} className="px-2 md:px-3 outline-none">
-                                <div className="slide-card group cursor-pointer">
-                                    <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.5] overflow-hidden rounded-2xl">
+                                <div className="slide-card group cursor-pointer relative">
+                                    <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.8] overflow-hidden rounded-[9rem]">
                                         <Image
                                             src={item.image}
                                             alt={item.title}
-                                            className="object-fill transition-transform duration-700 w-full h-full"
+                                            fill
+                                            className="object-fill transition-transform duration-700 group-hover:scale-105"
                                             sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
-                                            height={100}
-                                            width={100}
                                         />
                                     </div>
-                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-2xl font-raleway transition-all duration-500">
+                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-2xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
                                         {item.title}
                                     </p>
                                 </div>

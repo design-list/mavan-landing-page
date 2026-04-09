@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, CheckCircle, AlertCircle, Loader2, X } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertCircle, Loader2, X, ChevronDown } from "lucide-react";
 
 const services = [
     "Skin Rejuvenation",
@@ -28,7 +28,7 @@ const services = [
 ];
 
 const inputClass =
-    "w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/40 font-raleway text-sm focus:outline-none focus:border-golden focus:bg-white/15 transition-all duration-300";
+    "w-full bg-white/10 border border-white/20 rounded-lg md:rounded-xl px-2 py-1.5 md:px-4 md:py-3 text-white placeholder:text-white/40 font-raleway text-sm focus:outline-none focus:border-golden focus:bg-white/15 transition-all duration-300";
 
 export default function BookConsultationModal({ isOpen, onClose }) {
     const [form, setForm] = useState({
@@ -116,19 +116,19 @@ export default function BookConsultationModal({ isOpen, onClose }) {
                     <X size={18} />
                 </button>
 
-                <div className="relative z-10 p-8 md:p-10">
+                <div className="relative z-10 p-4 md:p-10">
                     {/* Header */}
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-4 md:mb-8">
                         <p className="font-raleway text-golden text-xs tracking-widest uppercase mb-2">
                             Let's Connect
                         </p>
-                        <h2 className="font-garamond text-3xl md:text-4xl text-white leading-tight">
+                        <h2 className="font-garamond text-2xl md:text-4xl text-white leading-tight">
                             Book a{" "}
                             <span className="bg-text-gradient bg-clip-text text-transparent font-bold">
                                 Consultation
                             </span>
                         </h2>
-                        <p className="font-raleway text-white/60 mt-3 text-sm max-w-sm mx-auto">
+                        <p className="font-raleway text-white/60 mt-3 text-xs md:text-sm max-w-sm mx-auto">
                             Share a few details and our team will reach out to schedule your
                             personalised skin consultation.
                         </p>
@@ -136,9 +136,9 @@ export default function BookConsultationModal({ isOpen, onClose }) {
 
                     <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            {/* Full Name */}
+                            {/* Full Name — required ✅ unchanged */}
                             <div className="flex flex-col gap-1.5">
-                                <label className="font-raleway text-white/70 text-xs uppercase tracking-wider">
+                                <label className="font-raleway text-white/70 text-[10px] md:text-xs uppercase tracking-wider">
                                     Full Name <span className="text-golden">*</span>
                                 </label>
                                 <input
@@ -152,10 +152,10 @@ export default function BookConsultationModal({ isOpen, onClose }) {
                                 />
                             </div>
 
-                            {/* Email */}
+                            {/* Email — now optional ✅ */}
                             <div className="flex flex-col gap-1.5">
-                                <label className="font-raleway text-white/70 text-xs uppercase tracking-wider">
-                                    Email <span className="text-golden">*</span>
+                                <label className="font-raleway text-white/70 text-[10px] md:text-xs uppercase tracking-wider">
+                                    Email
                                 </label>
                                 <input
                                     type="email"
@@ -163,15 +163,14 @@ export default function BookConsultationModal({ isOpen, onClose }) {
                                     value={form.email}
                                     onChange={handleChange}
                                     placeholder="jane@example.com"
-                                    required
-                                    className={inputClass}
+                                    className={inputClass}  /* ✅ removed required */
                                 />
                             </div>
 
-                            {/* Phone */}
+                            {/* Phone — now required ✅ */}
                             <div className="flex flex-col gap-1.5">
-                                <label className="font-raleway text-white/70 text-xs uppercase tracking-wider">
-                                    Phone
+                                <label className="font-raleway text-white/70 text-[10px] md:text-xs uppercase tracking-wider">
+                                    Phone <span className="text-golden">*</span>  {/* ✅ added * */}
                                 </label>
                                 <input
                                     type="tel"
@@ -179,36 +178,48 @@ export default function BookConsultationModal({ isOpen, onClose }) {
                                     value={form.phone}
                                     onChange={handleChange}
                                     placeholder="+91 98765 43210"
+                                    required  /* ✅ added required */
                                     className={inputClass}
                                 />
                             </div>
 
-                            {/* Service */}
+                            {/* Service — now required ✅ */}
                             <div className="flex flex-col gap-1.5">
-                                <label className="font-raleway text-white/70 text-xs uppercase tracking-wider">
-                                    Service of Interest
+                                <label className="font-raleway text-white/70 text-[10px] md:text-xs uppercase tracking-wider">
+                                    Service of Interest <span className="text-golden">*</span>
                                 </label>
-                                <select
-                                    name="service"
-                                    value={form.service}
-                                    onChange={handleChange}
-                                    className={`${inputClass} appearance-none cursor-pointer`}
-                                >
-                                    <option value="" className="bg-darkpurple text-white">
-                                        Select a treatment
-                                    </option>
-                                    {services.map((s) => (
-                                        <option key={s} value={s} className="bg-darkpurple text-white">
-                                            {s}
+
+                                {/* ✅ Wrapper makes custom arrow possible */}
+                                <div className="relative">
+                                    <select
+                                        name="service"
+                                        value={form.service}
+                                        onChange={handleChange}
+                                        required
+                                        className={`${inputClass} appearance-none cursor-pointer pr-10`} /* ✅ pr-10 stops text overlapping arrow */
+                                    >
+                                        <option value="" disabled className="bg-darkpurple text-white">
+                                            Select a treatment
                                         </option>
-                                    ))}
-                                </select>
+                                        {services.map((s) => (
+                                            <option key={s} value={s} className="bg-darkpurple text-white">
+                                                {s}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    {/* ✅ Custom chevron — pointer-events-none so clicks pass through to select */}
+                                    <ChevronDown
+                                        size={16}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none"
+                                    />
+                                </div>
                             </div>
 
-                            {/* Message */}
+                            {/* Message — now optional ✅ */}
                             <div className="flex flex-col gap-1.5 md:col-span-2">
-                                <label className="font-raleway text-white/70 text-xs uppercase tracking-wider">
-                                    Your Concern <span className="text-golden">*</span>
+                                <label className="font-raleway text-white/70 text-[10px] md:text-xs uppercase tracking-wider">
+                                    Your Concern  {/* ✅ removed * */}
                                 </label>
                                 <textarea
                                     name="message"
@@ -216,8 +227,7 @@ export default function BookConsultationModal({ isOpen, onClose }) {
                                     onChange={handleChange}
                                     rows={4}
                                     placeholder="Tell us a little about your skin concern or what you're hoping to address..."
-                                    required
-                                    className={`${inputClass} resize-none`}
+                                    className={`${inputClass} resize-none`}  /* ✅ removed required */
                                 />
                             </div>
                         </div>

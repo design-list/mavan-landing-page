@@ -174,7 +174,7 @@ export default function TestimonialMarquee() {
                     </div>
 
                     {/* Column 2 */}
-                    <div className="animate-marquee-vertical flex flex-col" style={getColumnStyle(-15)}>
+                    <div className="animate-marquee-vertical flex flex-col mt-24" style={getColumnStyle(-15)}>
                         {list.map((item, i) => (
                             <TestimonialCard key={i} item={item} onClick={handleCardClick} />
                         ))}

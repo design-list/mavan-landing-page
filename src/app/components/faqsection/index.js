@@ -6,30 +6,55 @@ import { useConsultation } from "../../context/ConsultationContext";
 
 const faqs = [
     {
-        question: "How do I know which treatment is right for me?",
+        question: "What treatments does Maven Esthetics offer? ",
         answer:
-            "Every patient begins with a consultation where the doctor evaluates your skin or hair concerns and recommends a personalized treatment plan.",
+            "Laser skin rejuvenation, acne and scar treatment, Botox, fillers, chemical peels, PRP hair restoration, pigmentation correction, and body contouring.",
     },
     {
-        question: "Are the treatments safe?",
+        question: "Is laser treatment safe for Indian skin? ",
         answer:
-            "Yes, all treatments are performed under expert supervision using clinically approved protocols.",
+            "Yes, we use US FDA-approved lasers specifically calibrated for Indian skin tones.",
     },
     {
-        question: "How long does it take to see results?",
+        question: "How much do treatments cost?",
         answer:
-            "Results vary depending on treatment type, but many patients begin seeing improvements within a few sessions.",
+            "Costs vary by procedure and sessions needed; book a consultation for a personalized quote with flexible EMI options.",
     },
     {
-        question: "Do treatments require downtime?",
+        question: "How many sessions will I need? ",
         answer:
-            "Some treatments have minimal downtime while others allow immediate return to daily routine.",
+            "Most concerns like acne scars or pigmentation show visible results in 3 to 6 sessions depending on severity.",
     },
     {
-        question: "How do I book a consultation?",
+        question: "Is there downtime after procedures? ",
         answer:
-            "You can book directly through our clinic phone, WhatsApp, or online appointment system.",
+            "Most treatments have minimal to no downtime, with mild redness lasting 24 to 48 hours at most.",
     },
+    {
+        question: "Do I need a consultation before starting?",
+        answer:
+            "Yes, every treatment begins with a dermatologist consultation to assess your skin and recommend the right plan.",
+    },
+    {
+        question: "What is the best treatment for pigmentation? ",
+        answer:
+            "It depends on the type; we offer chemical peels, Q-switched laser, and combination therapies based on diagnosis.",
+    },
+    {
+        question: "What brands and technology do you use? ",
+        answer:
+            "All our equipment and injectables are US FDA-approved and sourced from authorized distributors.",
+    },
+    {
+        question: "Are your dermatologists qualified? ",
+        answer:
+            "Our team includes certified dermatologists with advanced training in clinical and cosmetic dermatology.",
+    },
+    {
+        question: "Where is the clinic located? ",
+        answer:
+            "Maven Esthetics is in Lokhandwala, Andheri West, Mumbai, open six days a week with evening slots available",
+    }
 ];
 
 export default function FAQSection() {
@@ -41,8 +66,8 @@ export default function FAQSection() {
             <div className="container">
                 <div className="grid lg:grid-cols-2 gap-8 items-start">
 
-                    {/* Left Content */}
-                    <div>
+                    {/* Left Content  */}
+                    <div className="lg:sticky lg:top-8 lg:self-start">
                         <h2 className="font-garamond text-3xl md:text-5xl leading-tight max-w-xl font-semibold">
                             Have Questions Before Your Consultation?
                         </h2>
@@ -54,36 +79,38 @@ export default function FAQSection() {
 
                         <div className="mt-10 space-y-8 text-black">
                             <div>
-                                <h4 className="font-semibold text-xl mb-2">Visit Us</h4>
+                                <h4 className="font-semibold text-base md:text-x text-center md:text-left mb-2">Visit Us</h4>
                                 <p>
                                     B/103 Manu Apartments, Seven Bungalows, Versova,
                                     Andheri West, Mumbai 400061
                                 </p>
                             </div>
 
-                            <div>
-                                <h4 className="font-semibold text-xl mb-2">Opening Hours</h4>
+                            <div className="text-center md:text-left">
+                                <h4 className="font-semibold text-base md:text-xl text-center md:text-left mb-2">Opening Hours</h4>
                                 <p>Mon – Fri: 12 PM – 8 PM</p>
                                 <p>Sat: 12 PM – 6 PM</p>
                             </div>
                         </div>
 
-                        <button onClick={open} className="theme-button mt-12 px-8 py-4 flex items-center gap-3">
-                            Book a consultation
-                            <ArrowRight size={20} />
-                        </button>
+                        <div className="flex justify-center md:justify-self-start">
+                            <button onClick={open} className="theme-button mt-6 md:mt-12 px-8 py-4 flex items-center gap-3">
+                                Book a consultation
+                                <ArrowRight size={20} />
+                            </button>
+                        </div>
                     </div>
 
                     {/* Right FAQ */}
-                    <div className="bg-[#F6F6F6] rounded-3xl p-6 space-y-5">
+                    <div className="md:bg-[#F6F6F6] rounded-3xl md:p-6 space-y-5">
                         {faqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl px-8 py-6 cursor-pointer transition-all"
+                                className="bg-white md:rounded-2xl md:px-8 md:py-6 cursor-pointer transition-all border-b border-purple/20 pb-2"
                                 onClick={() => setActive(active === index ? null : index)}
                             >
                                 <div className="flex justify-between items-center">
-                                    <h3 className="text-xl font-medium">{faq.question}</h3>
+                                    <h3 className="text-base md:text-xl font-medium">{faq.question}</h3>
                                     {active === index ? (
                                         <ChevronUp size={24} />
                                     ) : (
@@ -92,7 +119,7 @@ export default function FAQSection() {
                                 </div>
 
                                 {active === index && (
-                                    <p className="mt-4 text-black/70 leading-relaxed max-w-2xl">
+                                    <p className="text-sm md:text-base mt-4 text-black leading-relaxed md:max-w-2xl">
                                         {faq.answer}
                                     </p>
                                 )}

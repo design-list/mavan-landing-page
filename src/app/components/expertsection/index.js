@@ -25,7 +25,7 @@ export default function ExpertSection() {
         infinite: true,
         autoplay: true,
         autoplaySpeed: 1000,
-        speed: 800,
+        speed: 1200,
         slidesToShow: 5,
         slidesToScroll: 1,
         arrows: false,
@@ -96,6 +96,7 @@ export default function ExpertSection() {
                                     src={img.src}
                                     alt={img.alt}
                                     fill
+                                    sizes=""
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                             </div>

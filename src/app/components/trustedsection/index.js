@@ -18,7 +18,7 @@ const track = [...personalityImages, ...personalityImages, ...personalityImages]
 
 export default function TrustedSection() {
     return (
-        <section className="bg-white py-10 md:py-20 overflow-hidden">
+        <section className="bg-white py-10 md:py-8 overflow-hidden">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-8 md:mb-16">

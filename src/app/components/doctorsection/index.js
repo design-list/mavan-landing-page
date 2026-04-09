@@ -28,7 +28,7 @@ export default function DoctorSection() {
                             <Image
                                 src={DoctorImage}
                                 alt="Doctor"
-                                className="object-cover w-full h-full"
+                                className="object-cover w-[70%] h-[310px] m-auto md:w-full md:h-full"
                             />
                         </div>
 
@@ -64,7 +64,7 @@ export default function DoctorSection() {
                     </div>
                 </div>
             </div>
-            <div className="absolute -bottom-20 " >
+            <div className="absolute -bottom-24" >
                 <Image src={CurveLine} width={100} height={100} alt="Curve Line" className="w-full" />
             </div>
         </section>
