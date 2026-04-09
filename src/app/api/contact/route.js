@@ -4,9 +4,9 @@ export async function POST(request) {
     try {
         const { name, email, phone, service, message } = await request.json();
 
-        if (!name || !email || !message) {
+        if (!name || !phone || !service) {
             return Response.json(
-                { error: "Name, email, and message are required." },
+                { error: "Name, phone, and service are required." },
                 { status: 400 }
             );
         }
@@ -24,7 +24,7 @@ export async function POST(request) {
         await transporter.sendMail({
             from: `"Maven Esthetics" <${process.env.SMTP_USER}>`,
             to: process.env.CONTACT_EMAIL,
-            replyTo: email,
+            ...(email ? { replyTo: email } : {}),
             subject: `New Consultation Request — ${name}`,
             html: `
                 <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;border:1px solid #e3b16f;border-radius:12px;overflow:hidden;">
@@ -35,12 +35,12 @@ export async function POST(request) {
                     <div style="padding:28px 24px;background:#fff;">
                         <table style="width:100%;border-collapse:collapse;font-size:14px;color:#1f0035;">
                             <tr><td style="padding:8px 0;font-weight:bold;width:130px;">Name</td><td>${name}</td></tr>
-                            <tr><td style="padding:8px 0;font-weight:bold;">Email</td><td><a href="mailto:${email}" style="color:#5a0060;">${email}</a></td></tr>
-                            <tr><td style="padding:8px 0;font-weight:bold;">Phone</td><td>${phone || "—"}</td></tr>
-                            <tr><td style="padding:8px 0;font-weight:bold;">Service</td><td>${service || "—"}</td></tr>
+                            <tr><td style="padding:8px 0;font-weight:bold;">Email</td><td>${email ? `<a href="mailto:${email}" style="color:#5a0060;">${email}</a>` : "—"}</td></tr>
+                            <tr><td style="padding:8px 0;font-weight:bold;">Phone</td><td>${phone}</td></tr>
+                            <tr><td style="padding:8px 0;font-weight:bold;">Service</td><td>${service}</td></tr>
                             <tr>
                                 <td style="padding:8px 0;font-weight:bold;vertical-align:top;">Message</td>
-                                <td style="padding:8px 0;line-height:1.6;">${message.replace(/\n/g, "<br/>")}</td>
+                                <td style="padding:8px 0;line-height:1.6;">${(message || "—").replace(/\n/g, "<br/>")}</td>
                             </tr>
                         </table>
                     </div>
