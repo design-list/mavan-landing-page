@@ -21,9 +21,19 @@ const treatmentData = {
         { image: "/img/esthetics/esthetics2.png", title: "Glow and radiance" },
         { image: "/img/esthetics/esthetics3.png", title: "peels" },
         { image: "/img/esthetics/esthetics4.png", title: "Laser hair reduction" },
+        { image: "/img/esthetics/esthetics5.png", title: "Sculpting" },
+        { image: "/img/esthetics/esthetics1.png", title: "anti inflammatory & barrier repair treatment " },
+        { image: "/img/esthetics/esthetics2.png", title: "Glow and radiance" },
+        { image: "/img/esthetics/esthetics3.png", title: "peels" },
+        { image: "/img/esthetics/esthetics4.png", title: "Laser hair reduction" },
         { image: "/img/esthetics/esthetics5.png", title: "Sculpting" }
     ],
     "Advanced & Regenerative": [
+        { image: "/img/ARE/ARE1.png", title: "Anti inflammatory & barrier repair treatment" },
+        { image: "/img/ARE/ARE2.png", title: "Glow and radiance" },
+        { image: "/img/ARE/ARE3.png", title: "causemetic treatments" },
+        { image: "/img/ARE/ARE4.png", title: "regenerative aesthetics" },
+        { image: "/img/ARE/ARE5.png", title: "botched procedures and corrections" },
         { image: "/img/ARE/ARE1.png", title: "Anti inflammatory & barrier repair treatment" },
         { image: "/img/ARE/ARE2.png", title: "Glow and radiance" },
         { image: "/img/ARE/ARE3.png", title: "causemetic treatments" },
@@ -82,14 +92,14 @@ export default function SkinSolution() {
             {
                 breakpoint: 1280,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 5,
                     centerPadding: "0px",
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                     centerMode: false,
                     centerPadding: "0px",
                     arrows: true,
@@ -179,7 +189,7 @@ export default function SkinSolution() {
                                             sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
                                         />
                                     </div>
-                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-2xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
+                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
                                         {item.title}
                                     </p>
                                 </div>

@@ -110,7 +110,7 @@ export default function FAQSection() {
                                 onClick={() => setActive(active === index ? null : index)}
                             >
                                 <div className="flex justify-between items-center">
-                                    <h3 className="text-base md:text-xl font-medium">{faq.question}</h3>
+                                    <h3 className="text-base md:text-lg font-semibold">{faq.question}</h3>
                                     {active === index ? (
                                         <ChevronUp size={24} />
                                     ) : (

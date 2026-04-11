@@ -9,8 +9,6 @@ const personalityImages = [
     { id: 4, src: '/img/personality4.png', alt: 'Client 4' },
     { id: 5, src: '/img/personality5.png', alt: 'Client 5' },
     { id: 6, src: '/img/personality6.png', alt: 'Client 6' },
-    { id: 7, src: '/img/personality7.png', alt: 'Client 7' },
-    { id: 8, src: '/img/personality8.png', alt: 'Client 8' },
 ];
 
 // Duplicate enough times to fill wide screens without gaps

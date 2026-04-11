@@ -111,7 +111,7 @@ export default function Home() {
             ))}
           </Slider>
         </div>
-        <div className="absolute -bottom-32 " >
+        <div className="absolute md:-bottom-40 3xl:-bottom-32 " >
           <Image src={CurveLine} width={100} height={100} alt="Curve Line" className="w-full" />
         </div>
       </section>
