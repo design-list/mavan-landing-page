@@ -33,11 +33,11 @@ export default function DoctorSection() {
                         </div>
 
                         <div className="mt-8 space-y-2 text-sm leading-relaxed text-black">
-                            <p>
+                            {/* <p>
                                 Dr. Geoffrey Vaz is an MD Dermatologist, Facial Aesthetic Specialist, and a National & International Trainer who educates doctors in advanced dermatology and aesthetic techniques.
-                            </p>
+                            </p> */}
                             <p>
-                                His approach has been shaped through mentorship with global leaders such as Dr. Arthur Swift, Dr. Woffles Wu, and Dr. Mauricio de Maio, refining his philosophy of subtle, natural results. With expertise spanning medical dermatology, advanced skin treatments, facial aesthetics, and hair restoration, Dr. Vaz practices a holistic approach, recognizing that skin and hair concerns often reflect deeper hormonal, metabolic, and lifestyle factors.
+                                Dr. Vaz's approach has been shaped through mentorship with global leaders such as Dr. Arthur Swift, Dr. Woffles Wu, and Dr. Mauricio de Maio, refining his philosophy of subtle, natural results. With expertise spanning medical dermatology, advanced skin treatments, facial aesthetics, and hair restoration, Dr. Vaz practices a holistic approach, recognizing that skin and hair concerns often reflect deeper hormonal, metabolic, and lifestyle factors.
                             </p>
                             <p>
                                 Beyond his clinical practice, he is associated with R.K. Mission, Jeevan Jyoti, and Prerna Healthcare, extending dermatology care to underserved communities, a commitment that remains central to his identity as a clinician.
