@@ -10,24 +10,19 @@ import Container from '../container';
 
 const resultsData = {
     esthetic: [
-        { id: 1, img: '/img/beforeafter1.png' },
-        { id: 2, img: '/img/beforeafter2.png' },
-        { id: 3, img: '/img/beforeafter3.png' },
-        { id: 4, img: '/img/beforeafter4.png' },
-        { id: 5, img: '/img/beforeafter5.png' },
-        { id: 6, img: '/img/beforeafter6.png' },
-        { id: 7, img: '/img/beforeafter7.png' },
-        { id: 8, img: '/img/beforeafter8.png' },
+        { id: 1, img: '/img/esthetic1.png' },
+        { id: 2, img: '/img/esthetic2.png' },
+        { id: 3, img: '/img/esthetic3.png' },
+        { id: 4, img: '/img/esthetic4.png' },
+        { id: 5, img: '/img/esthetic5.png' },
+        { id: 6, img: '/img/esthetic6.png' },
+        { id: 7, img: '/img/esthetic7.png' },
+        { id: 8, img: '/img/esthetic8.png' },
+        { id: 8, img: '/img/esthetic9.png' },
     ],
     derma: [
-        { id: 1, img: '/img/beforeafter1.png' },
-        { id: 2, img: '/img/beforeafter2.png' },
-        { id: 3, img: '/img/beforeafter3.png' },
-        { id: 4, img: '/img/beforeafter4.png' },
-        { id: 5, img: '/img/beforeafter5.png' },
-        { id: 6, img: '/img/beforeafter6.png' },
-        { id: 7, img: '/img/beforeafter7.png' },
-        { id: 8, img: '/img/beforeafter8.png' },
+        { id: 1, img: '/img/dermatology1.png' },
+        { id: 2, img: '/img/dermatology2.png' }
     ],
 };
 
@@ -92,7 +87,7 @@ export default function ResultsSlider() {
                                 : 'text-gray-400 hover:text-black'
                                 }`}
                         >
-                            Derma
+                            Dermatology
                         </button>
                     </div>
                 </div>

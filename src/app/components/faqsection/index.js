@@ -88,8 +88,10 @@ export default function FAQSection() {
 
                             <div className="text-center md:text-left">
                                 <h4 className="font-semibold text-base md:text-xl text-center md:text-left mb-2">Opening Hours</h4>
-                                <p>Mon – Fri: 12 PM – 8 PM</p>
-                                <p>Sat: 12 PM – 6 PM</p>
+                                <p>Mon - Wed: 11 PM to 8 PM</p>
+                                <p>Fri - Sun: 11 PM to 8 PM</p>
+
+
                             </div>
                         </div>
 

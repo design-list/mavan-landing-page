@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Container from "../container";
 
-
 import Logo from '@/icons/logo.svg';
 import Bgbanner from '@/img/hero-banner.png';
 import BgbannerMobile from '@/img/hero-banner-mobile.png';
@@ -74,7 +73,7 @@ export default function HeroSection() {
                     </button>
 
                     {/* Stats */}
-                    <div className="font-raleway flex md:gap-10 mt-28 md:mt-48 text-white flex-wrap justify-center font-light text-lg">
+                    <div className="font-raleway flex md:gap-10 mt-28 md:mt-36 2xl:mt-56 text-white flex-wrap justify-center font-light text-lg">
                         <div className="flex gap-2" >
                             <i className="bg-linear-bg bg-clip-text text-transparent inline-block text-2xl md:text-4xl font-bold">5</i>
                             <span className="">Star Rated</span>

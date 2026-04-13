@@ -159,7 +159,7 @@ export default function TestimonialMarquee() {
                         <span className="inline-block bg-text-gradient bg-clip-text text-transparent font-black ml-3">Trusted</span> By Many
                     </h2>
                     <div className="flex items-end justify-center gap-3 font-raleway">
-                        <span className="text-3xl font-bold">4.9</span>
+                        <span className="text-3xl font-bold">5.0</span>
                         <span className="text-sm text-gray-500">Out of 5 Rating</span>
                         <div className="flex text-yellow-400">★★★★★</div>
                     </div>

@@ -127,7 +127,7 @@ export default function SkinSolution() {
                     src="/img/skin-care-bg.png"
                     alt="Background"
                     fill
-                    className="object-cover hidden md:block"
+                    className="object-fill hidden md:block"
                     priority
                 />
                 <Image

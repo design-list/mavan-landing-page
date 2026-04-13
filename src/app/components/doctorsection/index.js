@@ -6,7 +6,7 @@ import CurveLine from "@/icons/curve.svg";
 
 export default function DoctorSection() {
     return (
-        <section className="py-14 relative">
+        <section className="py-8 relative">
             <div className="container">
                 <div className="flex flex-col md:flex-row gap-16 items-center">
 
