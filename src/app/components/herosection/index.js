@@ -64,7 +64,7 @@ const sliderSettings = {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 4000,
     cssEase: "cubic-bezier(0.25, 1, 0.5, 1)",
     arrows: false,
