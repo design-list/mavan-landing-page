@@ -144,7 +144,7 @@ export default function SkinSolution() {
                                                 sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
                                             />
                                         </div>
-                                        <p className="title text-white mt-4 md:mt-6 text-base md:text-xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
+                                        <p className="title text-white mt-4 md:mt-6 text-base md:text-xl font-raleway transition-all duration-500 capitalize md:absolute text-center w-full">
                                             {item.title}
                                         </p>
                                     </div>
@@ -157,13 +157,13 @@ export default function SkinSolution() {
                     <div className="relative">
                         <button
                             onClick={() => swiperRef.current?.slidePrev()}
-                            className="absolute left-[calc(50%-56px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+                            className="absolute left-[calc(50%-56px)] -bottom-18 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
                         >
                             <ChevronLeft size={20} className="text-purple" />
                         </button>
                         <button
                             onClick={() => swiperRef.current?.slideNext()}
-                            className="absolute left-[calc(50%+8px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+                            className="absolute left-[calc(50%+8px)] -bottom-18 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
                         >
                             <ChevronRight size={20} className="text-purple" />
                         </button>

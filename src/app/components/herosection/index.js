@@ -10,7 +10,7 @@ import Logo from "@/icons/logo.svg";
 import Bgbanner from "@/img/hero-banner.png";
 import BgbannerMobile from "@/img/hero-banner-mobile.png";
 import Bgbanner2 from "@/img/hero-banner2.png";
-// import BgbannerMobile from "@/img/hero-banner-mobile.png";
+import BgbannerMobile2 from "@/img/hero-banner-mobile2.png";
 
 const slides = [
     {
@@ -39,7 +39,7 @@ const slides = [
         ),
         sub: "Doctor-led treatments tailored to your unique skin.",
         bg: Bgbanner2,
-        mobileBg: Bgbanner2,
+        mobileBg: BgbannerMobile2,
     },
     // {
     //     tagline: "Maven Esthetics",
