@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Slider from "../dynamic-slider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import SkinCareBg from "@/img/skin-care-bg.png";
 import SkinCareBgMob from "@/img/purple-bg-mobile.png";
 import { useConsultation } from "../../context/ConsultationContext";
@@ -21,38 +22,6 @@ const galleryImages = [
 
 export default function ExpertSection() {
     const { open } = useConsultation();
-    const settings = {
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 1000,
-        speed: 1200,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        arrows: false,
-        pauseOnHover: false,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1,
-                    centerMode: true,
-                    centerPadding: "40px",
-                },
-            },
-        ],
-    };
 
     return (
         <section className="relative py-20 md:py-40">
@@ -88,21 +57,40 @@ export default function ExpertSection() {
                 </div>
 
                 {/* Slider */}
-                <Slider {...settings}>
-                    {galleryImages.map((img) => (
-                        <div key={img.id} className="px-3">
-                            <div className="relative w-full h-[350px] md:h-[420px] rounded-[60px] md:rounded-[120px] overflow-hidden border border-white/10 group">
-                                <Image
-                                    src={img.src}
-                                    alt={img.alt}
-                                    fill
-                                    sizes=""
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
+                <Swiper
+                    modules={[Autoplay]}
+                    loop={true}
+                    autoplay={{
+                        delay: 1000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: false,
+                    }}
+                    speed={1200}
+                    slidesPerView={1}
+                    centeredSlides={true}
+                    spaceBetween={12}
+                    breakpoints={{
+                        640: { slidesPerView: 2, centeredSlides: false },
+                        768: { slidesPerView: 2, centeredSlides: false },
+                        1024: { slidesPerView: 5, centeredSlides: false },
+                    }}
+                >
+                    {galleryImages.map((img, index) => (
+                        <SwiperSlide key={index}>
+                            <div className="px-3">
+                                <div className="relative w-full h-[350px] md:h-[420px] rounded-[60px] md:rounded-[120px] overflow-hidden border border-white/10 group">
+                                    <Image
+                                        src={img.src}
+                                        alt={img.alt}
+                                        fill
+                                        sizes=""
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        </SwiperSlide>
                     ))}
-                </Slider>
+                </Swiper>
 
                 {/* CTA */}
                 <div className="flex justify-center mt-12">

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import Slider from "../dynamic-slider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, FreeMode } from 'swiper/modules';
 import Image from 'next/image';
 import Container from '../container';
 
@@ -25,37 +26,6 @@ const resultsData = {
 
 export default function ResultsSlider() {
     const [activeTab, setActiveTab] = useState('esthetic');
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 3.5,
-        slidesToScroll: 1,
-        arrows: false,
-        // ✅ Continuous smooth scroll
-        autoplay: true,
-        autoplaySpeed: 0,        // No pause between slides
-        speed: 5000,             // Each slide takes 3s to transition
-        cssEase: 'linear',       // Constant velocity — no snap
-        pauseOnHover: true,      // Natural pause on hover
-
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,   // ✅ Fixed: was outside nested settings before
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1.2, // ✅ Peek of next card on mobile
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
 
     return (
         <section className="py-10 md:py-16 overflow-hidden">
@@ -92,37 +62,52 @@ export default function ResultsSlider() {
 
             {/* Slider — full bleed outside Container so it spills to edges */}
             <div className="results-slider px-4 md:px-8">
-                <Slider {...settings} key={activeTab}>
-                    {resultsData[activeTab].map((item) => (
-                        <div key={item.id} className="px-3">
-                            <div className="relative h-[300px] md:h-[500px] rounded-[40px] overflow-hidden bg-gray-100 group">
-                                <Image
-                                    src={item.img}
-                                    alt={`Result ${item.id}`}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                <Swiper
+                    key={activeTab}
+                    modules={[Autoplay, FreeMode]}
+                    loop={true}
+                    freeMode={true}
+                    speed={5000}
+                    autoplay={{
+                        delay: 0,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    }}
+                    slidesPerView={1.2}
+                    spaceBetween={12}
+                    breakpoints={{
+                        640: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3.5 },
+                    }}
+                >
+                    {resultsData[activeTab].map((item, index) => (
+                        <SwiperSlide key={index}>
+                            <div className="px-3">
+                                <div className="relative h-[300px] md:h-[500px] rounded-[40px] overflow-hidden bg-gray-100 group">
+                                    <Image
+                                        src={item.img}
+                                        alt={`Result ${item.id}`}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        </SwiperSlide>
                     ))}
-                </Slider>
+                </Swiper>
             </div>
 
             <style jsx global>{`
-                .results-slider .slick-list {
+                .results-slider .swiper {
                     overflow: visible;
                 }
                 @media (max-width: 640px) {
-                    .results-slider .slick-list {
+                    .results-slider .swiper {
                         overflow: hidden;
                     }
                 }
-                .results-slider .slick-track {
-                    display: flex !important;
-                    will-change: transform; /* GPU acceleration */
-                }
-                .results-slider .slick-slide {
-                    height: inherit !important;
+                .results-slider .swiper-wrapper {
+                    transition-timing-function: linear !important;
                 }
             `}</style>
         </section>

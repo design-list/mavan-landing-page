@@ -1,6 +1,7 @@
 "use client";
 
-import Slider from "./components/dynamic-slider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import HeroSection from "./components/herosection";
@@ -30,35 +31,6 @@ const logos = [
   "/img/brands8.png",
 ];
 
-const settings = {
-  dots: false,
-  infinite: true,
-  speed: 3000,
-  slidesToShow: 8,
-  slidesToScroll: 1,
-  autoplay: true,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-  ],
-};
 
 export default function Home() {
   const { open } = useConsultation();
@@ -92,21 +64,39 @@ export default function Home() {
           </div>
 
           {/* Logos */}
-          <Slider {...settings} className="mt-8 md:mt-20 brand-slider">
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            speed={3000}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            slidesPerView={2}
+            spaceBetween={4}
+            breakpoints={{
+              480: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1024: { slidesPerView: 8 },
+            }}
+            className="mt-8 md:mt-20 brand-slider"
+          >
             {logos.map((logo, index) => (
-              <div key={index} className="px-3">
-                <div className="flex justify-center items-center">
-                  <Image
-                    src={logo}
-                    alt="brand"
-                    width={180}
-                    height={70}
-                    className="object-contain grayscale mx-auto"
-                  />
+              <SwiperSlide key={index}>
+                <div className="px-3">
+                  <div className="flex justify-center items-center">
+                    <Image
+                      src={logo}
+                      alt="brand"
+                      width={180}
+                      height={70}
+                      className="object-contain grayscale mx-auto"
+                    />
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
         <div className="absolute -bottom-12 md:-bottom-32 3xl:-bottom-32 " >
           <Image src={CurveLine} width={100} height={100} alt="Curve Line" className="w-full" />

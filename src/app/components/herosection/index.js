@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Container from "../container";
-import Slider from "../dynamic-slider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { useConsultation } from "../../context/ConsultationContext";
 
 import Logo from "@/icons/logo.svg";
@@ -56,19 +57,6 @@ const slides = [
     // },
 ];
 
-const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    cssEase: "cubic-bezier(0.25, 1, 0.5, 1)",
-    arrows: false,
-    pauseOnHover: false,
-};
-
 export default function HeroSection() {
     const { open } = useConsultation();
 
@@ -90,9 +78,21 @@ export default function HeroSection() {
             </Container>
 
             {/* HERO SLIDER */}
-            <Slider {...sliderSettings} className="hero-slider">
+            <Swiper
+                modules={[Autoplay, Pagination]}
+                loop={true}
+                speed={1000}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
+                }}
+                pagination={{ clickable: true }}
+                slidesPerView={1}
+                className="hero-slider"
+            >
                 {slides.map((slide, i) => (
-                    <div key={i}>
+                    <SwiperSlide key={i}>
                         <div className="relative h-screen overflow-hidden">
 
                             {/* Background Image per slide */}
@@ -159,22 +159,23 @@ export default function HeroSection() {
                                 </div>
                             </Container>
                         </div>
-                    </div>
+                    </SwiperSlide>
                 ))}
-            </Slider>
+            </Swiper>
 
             {/* Dots Styling */}
             <style jsx global>{`
-                .hero-slider .slick-dots {
-                    bottom: 8rem;
+                .hero-slider .swiper-pagination {
+                    bottom: 8rem !important;
                 }
-                .hero-slider .slick-dots li button:before {
-                    color: #e3b16f;
-                    font-size: 10px;
+                .hero-slider .swiper-pagination-bullet {
+                    background: #e3b16f;
                     opacity: 0.4;
+                    width: 10px;
+                    height: 10px;
                 }
-                .hero-slider .slick-dots li.slick-active button:before {
-                    color: #e3b16f;
+                .hero-slider .swiper-pagination-bullet-active {
+                    background: #e3b16f;
                     opacity: 1;
                 }
             `}</style>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Slider from "../dynamic-slider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -42,28 +43,6 @@ const treatmentData = {
     ],
 };
 
-function PrevArrow({ onClick }) {
-    return (
-        <button
-            onClick={onClick}
-            className="absolute left-[calc(50%-56px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
-        >
-            <ChevronLeft size={20} className="text-purple" />
-        </button>
-    );
-}
-
-function NextArrow({ onClick }) {
-    return (
-        <button
-            onClick={onClick}
-            className="absolute left-[calc(50%+8px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
-        >
-            <ChevronRight size={20} className="text-purple" />
-        </button>
-    );
-}
-
 // Full label map — button shows short key, full name shown as tooltip/aria
 const TAB_LABELS = {
     "Dermatology": "Dermatology",
@@ -73,58 +52,13 @@ const TAB_LABELS = {
 
 export default function SkinSolution() {
     const [activeTab, setActiveTab] = useState("Dermatology");
-    const sliderRef = useRef(null);
+    const swiperRef = useRef(null);
 
     useEffect(() => {
-        if (sliderRef.current) {
-            sliderRef.current.slickGoTo(0);
+        if (swiperRef.current) {
+            swiperRef.current.slideTo(0, 0);
         }
     }, [activeTab]);
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        centerMode: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        centerPadding: "0px",
-        speed: 600,
-        cssEase: "cubic-bezier(0.25, 1, 0.5, 1)",
-        autoplay: false,
-        arrows: true,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
-        focusOnSelect: true,
-        responsive: [
-            {
-                breakpoint: 1280,
-                settings: {
-                    slidesToShow: 5,
-                    centerPadding: "0px",
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 3,
-                    centerMode: true,
-                    centerPadding: "0px",
-                    arrows: true,
-                    focusOnSelect: true,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    centerMode: true,
-                    centerPadding: "30px",
-                    arrows: true,
-                    focusOnSelect: true,
-                },
-            },
-        ],
-    };
 
     return (
         <section className="skinsolution relative py-20 md:py-32">
@@ -183,26 +117,57 @@ export default function SkinSolution() {
 
                 {/* Slider */}
                 <div className="skin-slider-container overflow-x-hidden">
-                    <Slider ref={sliderRef} {...settings} className="skin-slider">
+                    <Swiper
+                        modules={[Navigation]}
+                        onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                        loop={true}
+                        centeredSlides={true}
+                        slidesPerView={1}
+                        speed={600}
+                        slideToClickedSlide={true}
+                        breakpoints={{
+                            480: { slidesPerView: 3, centeredSlides: true },
+                            768: { slidesPerView: 5, centeredSlides: true },
+                        }}
+                        className="skin-slider"
+                    >
                         {treatmentData[activeTab].map((item, index) => (
-                            <div key={index} className="px-2 md:px-3 outline-none">
-                                <div className="slide-card group cursor-pointer relative">
-                                    <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.8] overflow-hidden rounded-[4rem] md:rounded-[9rem]">
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className="object-fill transition-transform duration-700 group-hover:scale-105"
-                                            sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
-                                        />
+                            <SwiperSlide key={index}>
+                                <div className="px-2 md:px-3 outline-none">
+                                    <div className="slide-card group cursor-pointer relative">
+                                        <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.8] overflow-hidden rounded-[4rem] md:rounded-[9rem]">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-fill transition-transform duration-700 group-hover:scale-105"
+                                                sizes="(max-width: 480px) 80vw, (max-width: 768px) 60vw, 20vw"
+                                            />
+                                        </div>
+                                        <p className="title text-white mt-4 md:mt-6 text-base md:text-xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
+                                            {item.title}
+                                        </p>
                                     </div>
-                                    <p className="title text-white mt-4 md:mt-6 text-base md:text-xl font-raleway transition-all duration-500 capitalize absolute text-center w-full">
-                                        {item.title}
-                                    </p>
                                 </div>
-                            </div>
+                            </SwiperSlide>
                         ))}
-                    </Slider>
+                    </Swiper>
+
+                    {/* Custom Navigation Arrows */}
+                    <div className="relative">
+                        <button
+                            onClick={() => swiperRef.current?.slidePrev()}
+                            className="absolute left-[calc(50%-56px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+                        >
+                            <ChevronLeft size={20} className="text-purple" />
+                        </button>
+                        <button
+                            onClick={() => swiperRef.current?.slideNext()}
+                            className="absolute left-[calc(50%+8px)] -bottom-24 md:-bottom-44 z-30 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform"
+                        >
+                            <ChevronRight size={20} className="text-purple" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

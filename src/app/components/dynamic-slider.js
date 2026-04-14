@@ -1,4 +1,3 @@
 "use client";
-import dynamic from "next/dynamic";
-const DynamicSlider = dynamic(() => import("react-slick"), { ssr: false });
-export default DynamicSlider;
+export { Swiper, SwiperSlide } from 'swiper/react';
+export { Autoplay, Pagination, Navigation, FreeMode } from 'swiper/modules';
