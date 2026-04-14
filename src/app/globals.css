@@ -69,7 +69,7 @@
 .second-section .slick-slider .slick-track {
   display: flex;
   align-items: center;
-  gap: 4;
+  gap: 4px;
 }
 
 /* ========================================
@@ -84,6 +84,12 @@
 
 .skinsolution .skin-slider .slick-list {
   overflow: visible; /* Crucial for the scaling effect */
+}
+
+@media (max-width: 480px) {
+  .skinsolution .skin-slider .slick-list {
+    overflow: hidden; /* Prevent horizontal scroll on mobile */
+  }
 }
 
 /* 2. Base Slide State (Inactive) */

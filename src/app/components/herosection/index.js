@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import Container from "../container";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from "../dynamic-slider";
 import { useConsultation } from "../../context/ConsultationContext";
 
 import Logo from "@/icons/logo.svg";

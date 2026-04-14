@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Slider from "react-slick";
+import Slider from "../dynamic-slider";
 import SkinCareBg from "@/img/skin-care-bg.png";
 import SkinCareBgMob from "@/img/purple-bg-mobile.png";
 import { useConsultation } from "../../context/ConsultationContext";
@@ -91,7 +91,7 @@ export default function ExpertSection() {
                 <Slider {...settings}>
                     {galleryImages.map((img) => (
                         <div key={img.id} className="px-3">
-                            <div className="relative w-full h-[350px] md:h-[420px] rounded-[120px] overflow-hidden border border-white/10 group">
+                            <div className="relative w-full h-[350px] md:h-[420px] rounded-[60px] md:rounded-[120px] overflow-hidden border border-white/10 group">
                                 <Image
                                     src={img.src}
                                     alt={img.alt}

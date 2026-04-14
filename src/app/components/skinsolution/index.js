@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Slider from "react-slick";
+import Slider from "../dynamic-slider";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -118,7 +118,7 @@ export default function SkinSolution() {
                 settings: {
                     slidesToShow: 1,
                     centerMode: true,
-                    centerPadding: "60px",
+                    centerPadding: "30px",
                     arrows: true,
                     focusOnSelect: true,
                 },

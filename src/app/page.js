@@ -1,6 +1,6 @@
 "use client";
 
-import Slider from "react-slick";
+import Slider from "./components/dynamic-slider";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import HeroSection from "./components/herosection";
@@ -54,7 +54,7 @@ const settings = {
     {
       breakpoint: 480,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
       },
     },
   ],

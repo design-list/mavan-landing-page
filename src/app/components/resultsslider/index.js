@@ -1,11 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import Slider from "react-slick";
+import Slider from "../dynamic-slider";
 import Image from 'next/image';
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Container from '../container';
 
 const resultsData = {
@@ -114,6 +111,11 @@ export default function ResultsSlider() {
             <style jsx global>{`
                 .results-slider .slick-list {
                     overflow: visible;
+                }
+                @media (max-width: 640px) {
+                    .results-slider .slick-list {
+                        overflow: hidden;
+                    }
                 }
                 .results-slider .slick-track {
                     display: flex !important;
