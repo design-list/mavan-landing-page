@@ -144,18 +144,37 @@
   }
 
   /* image size default */
-  .skin-slider .image-wrap {
-    width: 160px;
-    height: 300px;
+  .skinsolution .skin-slider .image-wrap {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 
   /* center image bigger */
-  .skin-slider .slick-center .image-wrap {
-    width: 190px;
-    height: 320px;
+  .skinsolution .skin-slider .slick-center .image-wrap {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 
   .skinsolution .skin-slider-container {
-      padding-bottom: 6rem;
+    padding-bottom: 6rem;
+    margin: 0;
+  }
+
+  .skinsolution .skin-slider .slick-slide {
+    transform: scale(0.9);
+    filter: grayscale(40%);
+  }
+
+  .skinsolution .skin-slider .slick-center {
+    transform: scale(1);
+    filter: grayscale(0%);
+  }
+
+  .skinsolution .skin-slider .slick-slide .title {
+    font-size: 14px;
   }
 }

@@ -103,7 +103,7 @@ export default function HeroSection() {
                                     src={slide.bg}
                                     alt="Hero"
                                     fill
-                                    className="object-cover w-full hidden md:block md:z-10"
+                                    className="object-fill w-full hidden md:block md:z-10"
                                     priority
                                 />
                                 <Image

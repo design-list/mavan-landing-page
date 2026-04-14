@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -73,6 +73,13 @@ const TAB_LABELS = {
 
 export default function SkinSolution() {
     const [activeTab, setActiveTab] = useState("Dermatology");
+    const sliderRef = useRef(null);
+
+    useEffect(() => {
+        if (sliderRef.current) {
+            sliderRef.current.slickGoTo(0);
+        }
+    }, [activeTab]);
 
     const settings = {
         dots: false,
@@ -100,7 +107,7 @@ export default function SkinSolution() {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
-                    centerMode: false,
+                    centerMode: true,
                     centerPadding: "0px",
                     arrows: true,
                     focusOnSelect: true,
@@ -109,9 +116,9 @@ export default function SkinSolution() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2.5,
-                    centerMode: false,
-                    centerPadding: "0px",
+                    slidesToShow: 1,
+                    centerMode: true,
+                    centerPadding: "60px",
                     arrows: true,
                     focusOnSelect: true,
                 },
@@ -176,11 +183,11 @@ export default function SkinSolution() {
 
                 {/* Slider */}
                 <div className="skin-slider-container overflow-x-hidden">
-                    <Slider {...settings} key={activeTab} className="skin-slider">
+                    <Slider ref={sliderRef} {...settings} className="skin-slider">
                         {treatmentData[activeTab].map((item, index) => (
                             <div key={index} className="px-2 md:px-3 outline-none">
                                 <div className="slide-card group cursor-pointer relative">
-                                    <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.8] overflow-hidden rounded-[9rem]">
+                                    <div className="image-wrap relative mx-auto aspect-[3/4] md:aspect-[3/4.8] overflow-hidden rounded-[4rem] md:rounded-[9rem]">
                                         <Image
                                             src={item.image}
                                             alt={item.title}

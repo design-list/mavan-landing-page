@@ -37,10 +37,7 @@ const settings = {
   slidesToShow: 8,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 0,
-  cssEase: "linear",
   arrows: false,
-  pauseOnHover: false,
   responsive: [
     {
       breakpoint: 1024,
