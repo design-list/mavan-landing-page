@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import Image from "next/image";
@@ -53,12 +53,6 @@ const TAB_LABELS = {
 export default function SkinSolution() {
     const [activeTab, setActiveTab] = useState("Dermatology");
     const swiperRef = useRef(null);
-
-    useEffect(() => {
-        if (swiperRef.current) {
-            swiperRef.current.slideTo(0, 0);
-        }
-    }, [activeTab]);
 
     return (
         <section className="skinsolution relative py-20 md:py-32">
@@ -118,6 +112,7 @@ export default function SkinSolution() {
                 {/* Slider */}
                 <div className="skin-slider-container overflow-x-hidden">
                     <Swiper
+                        key={activeTab}
                         modules={[Navigation]}
                         onSwiper={(swiper) => { swiperRef.current = swiper; }}
                         loop={true}
@@ -125,6 +120,9 @@ export default function SkinSolution() {
                         slidesPerView={1}
                         speed={600}
                         slideToClickedSlide={true}
+                        observer={true}
+                        observeParents={true}
+                        watchSlidesProgress={true}
                         breakpoints={{
                             480: { slidesPerView: 3, centeredSlides: true },
                             768: { slidesPerView: 5, centeredSlides: true },
